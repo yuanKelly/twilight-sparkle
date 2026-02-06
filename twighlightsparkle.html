@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelly | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --midnight: #1a1d3d;
+            --deep-blue: #2d3561;
+            --royal-purple: #5a4aa8;
+            --twilight: #7d6cb8;
+            --lavender: #b8a8e8;
+            --star-white: #f4f1ff;
+            --magic-glow: #e6d9ff;
+            --accent-pink: #e8b4d9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lora', serif;
+            background: linear-gradient(135deg, var(--midnight) 0%, var(--deep-blue) 50%, var(--royal-purple) 100%);
+            color: var(--star-white);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Magical background stars */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* Sparkle animation container */
+        .sparkle-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .sparkle {
+            position: absolute;
+            font-size: 20px;
+            animation: sparkleRise 1.5s ease-out forwards;
+            pointer-events: none;
+        }
+
+        @keyframes sparkleRise {
+            0% {
+                transform: translateY(0) scale(0) rotate(0deg);
+                opacity: 1;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) scale(1.5) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .cursor-sparkle {
+            position: absolute;
+            font-size: 16px;
+            animation: cursorSparkle 1s ease-out forwards;
+            pointer-events: none;
+        }
+
+        @keyframes cursorSparkle {
+            0% {
+                transform: scale(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.5) rotate(180deg);
+                opacity: 0;
+            }
+        }
+
+        /* Floating books */
+        .floating-book {
+            position: fixed;
+            font-size: 30px;
+            pointer-events: none;
+            z-index: 5;
+            animation: floatBook 15s ease-in-out infinite;
+            opacity: 0.4;
+        }
+
+        @keyframes floatBook {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-30px) rotate(10deg);
+            }
+        }
+
+        /* Magic particles */
+        .magic-particle {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: var(--lavender);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 5;
+            animation: particleFloat 8s ease-in-out infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes particleFloat {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+            25% {
+                transform: translate(20px, -30px);
+            }
+            50% {
+                transform: translate(-15px, -60px);
+            }
+            75% {
+                transform: translate(30px, -40px);
+            }
+        }
+
+        /* Header */
+        header {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 80px 20px 60px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            margin-bottom: 10px;
+            background: linear-gradient(120deg, var(--star-white), var(--lavender), var(--accent-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 4s ease-in-out infinite;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-size: 200% 200%;
+        }
+
+        h1:hover {
+            letter-spacing: 0.15em;
+            text-shadow: 0 0 30px rgba(184, 168, 232, 0.6);
+        }
+
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--lavender);
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            font-weight: 400;
+            margin-bottom: 20px;
+            animation: fadeIn 1.5s ease-out 0.3s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            color: var(--magic-glow);
+            font-style: italic;
+            animation: fadeIn 1.5s ease-out 0.6s both;
+        }
+
+        /* Main container */
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Grid layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        /* Cards */
+        .card {
+            background: rgba(93, 74, 168, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(184, 168, 232, 0.2);
+            border-radius: 20px;
+            padding: 40px 30px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            animation: slideUp 0.8s ease-out both;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.2s; }
+        .card:nth-child(2) { animation-delay: 0.4s; }
+        .card:nth-child(3) { animation-delay: 0.6s; }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(184, 168, 232, 0.1), rgba(232, 180, 217, 0.1));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(184, 168, 232, 0.5);
+            box-shadow: 0 20px 60px rgba(125, 108, 184, 0.3);
+            animation: cardPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes cardPulse {
+            0%, 100% {
+                box-shadow: 0 20px 60px rgba(125, 108, 184, 0.3);
+            }
+            50% {
+                box-shadow: 0 20px 80px rgba(184, 168, 232, 0.5);
+            }
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card-interactive {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .card-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--lavender);
+            position: relative;
+        }
+
+        .card-content {
+            line-height: 1.8;
+            color: var(--magic-glow);
+            position: relative;
+        }
+
+        .card-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .card-content li {
+            padding-left: 25px;
+            position: relative;
+            margin-bottom: 12px;
+        }
+
+        .card-content li::before {
+            content: '★';
+            position: absolute;
+            left: 0;
+            color: var(--accent-pink);
+        }
+
+        /* Magic button */
+        .magic-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, var(--royal-purple), var(--twilight));
+            color: white;
+            border: 2px solid var(--lavender);
+            border-radius: 50px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+        }
+
+        .magic-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .magic-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(184, 168, 232, 0.5);
+        }
+
+        .magic-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .magic-button:active {
+            transform: scale(0.95);
+        }
+
+        /* Footer */
+        footer {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 60px 20px 40px;
+            color: var(--lavender);
+            font-size: 0.9rem;
+            animation: fadeIn 2s ease-out 1s both;
+        }
+
+        .quote {
+            font-style: italic;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: var(--magic-glow);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background stars -->
+    <div class="stars" id="stars"></div>
+
+    <!-- Sparkle container -->
+    <div class="sparkle-container" id="sparkleContainer"></div>
+
+    <!-- Header -->
+    <header>
+        <h1>Kelly</h1>
+        <p class="subtitle">Scholar • Organizer • Leader</p>
+        <p class="tagline">"Friendship is magic, but knowledge is power"</p>
+    </header>
+
+    <!-- Main content -->
+    <div class="container">
+        <div class="grid">
+            <!-- About Card -->
+            <div class="card card-interactive">
+                <h2 class="card-title">About Me</h2>
+                <div class="card-content">
+                    <p>Devoted to the pursuit of knowledge and excellence, I approach every challenge with methodical precision and unwavering dedication. My passion lies in learning, organizing, and helping others unlock their potential through education and collaboration.</p>
+                    <p style="margin-top: 15px;">Whether mastering complex subjects or coordinating team projects, I believe that preparation and attention to detail are the keys to success.</p>
+                </div>
+            </div>
+
+            <!-- Skills Card -->
+            <div class="card card-interactive">
+                <h2 class="card-title">Expertise</h2>
+                <div class="card-content">
+                    <ul>
+                        <li>Advanced Research & Analysis</li>
+                        <li>Project Management & Organization</li>
+                        <li>Strategic Planning & Problem Solving</li>
+                        <li>Team Leadership & Mentorship</li>
+                        <li>Communication & Documentation</li>
+                        <li>Continuous Learning & Adaptation</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Values Card -->
+            <div class="card card-interactive">
+                <h2 class="card-title">Core Values</h2>
+                <div class="card-content">
+                    <ul>
+                        <li>Loyalty to colleagues and commitments</li>
+                        <li>Excellence through diligent preparation</li>
+                        <li>Growth through knowledge and experience</li>
+                        <li>Generosity in sharing expertise</li>
+                        <li>Honesty in all endeavors</li>
+                        <li>Harmony through collaboration</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Magic button -->
+        <div style="text-align: center;">
+            <button class="magic-button" id="magicButton">Cast Magic Sparkles</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p class="quote">"The more you know, the more you grow"</p>
+        <p>&copy; 2024 Kelly. Dedicated to learning and friendship.</p>
+    </footer>
+
+    <script>
+        // Generate background stars
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            star.style.animationDuration = (Math.random() * 2 + 2) + 's';
+            starsContainer.appendChild(star);
+        }
+
+        // Add floating books
+        const bookEmojis = ['📚', '📖', '📕', '📗', '📘', '📙'];
+        for (let i = 0; i < 8; i++) {
+            const book = document.createElement('div');
+            book.className = 'floating-book';
+            book.textContent = bookEmojis[Math.floor(Math.random() * bookEmojis.length)];
+            book.style.left = Math.random() * 100 + '%';
+            book.style.top = Math.random() * 100 + '%';
+            book.style.animationDelay = Math.random() * 5 + 's';
+            book.style.animationDuration = (Math.random() * 5 + 10) + 's';
+            document.body.appendChild(book);
+        }
+
+        // Add magic particles
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'magic-particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 8 + 's';
+            particle.style.animationDuration = (Math.random() * 4 + 6) + 's';
+            document.body.appendChild(particle);
+        }
+
+        // Sparkle animation function
+        function createSparkle(x, y, count = 12) {
+            const sparkleContainer = document.getElementById('sparkleContainer');
+            const sparkleSymbols = ['✨', '⭐', '💫', '🌟', '✦', '★', '⚡', '💜'];
+            
+            for (let i = 0; i < count; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.textContent = sparkleSymbols[Math.floor(Math.random() * sparkleSymbols.length)];
+                
+                const offsetX = (Math.random() - 0.5) * 100;
+                const offsetY = (Math.random() - 0.5) * 50;
+                
+                sparkle.style.left = (x + offsetX) + 'px';
+                sparkle.style.top = (y + offsetY) + 'px';
+                sparkle.style.animationDelay = (Math.random() * 0.3) + 's';
+                
+                const colors = ['#b8a8e8', '#e8b4d9', '#f4f1ff', '#7d6cb8', '#5a4aa8'];
+                sparkle.style.color = colors[Math.floor(Math.random() * colors.length)];
+                
+                sparkleContainer.appendChild(sparkle);
+                
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 1500);
+            }
+        }
+
+        // Cursor trail sparkles
+        let lastSparkleTime = 0;
+        document.addEventListener('mousemove', function(e) {
+            const now = Date.now();
+            if (now - lastSparkleTime > 100) { // Create sparkle every 100ms
+                const sparkleContainer = document.getElementById('sparkleContainer');
+                const sparkle = document.createElement('div');
+                sparkle.className = 'cursor-sparkle';
+                sparkle.textContent = ['✨', '⭐', '💫'][Math.floor(Math.random() * 3)];
+                sparkle.style.left = e.pageX + 'px';
+                sparkle.style.top = e.pageY + 'px';
+                sparkle.style.color = ['#b8a8e8', '#e8b4d9', '#f4f1ff'][Math.floor(Math.random() * 3)];
+                sparkleContainer.appendChild(sparkle);
+                
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 1000);
+                
+                lastSparkleTime = now;
+            }
+        });
+
+        // Random sparkle bursts across the screen
+        function randomSparkleBurst() {
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight;
+            createSparkle(x, y, 8);
+            
+            // Schedule next burst
+            setTimeout(randomSparkleBurst, Math.random() * 3000 + 2000);
+        }
+        
+        // Start random sparkle bursts
+        setTimeout(randomSparkleBurst, 2000);
+
+        // Magic button sparkle effect - MASSIVE BURST
+        const magicButton = document.getElementById('magicButton');
+        magicButton.addEventListener('click', function(e) {
+            const rect = this.getBoundingClientRect();
+            const x = rect.left + rect.width / 2;
+            const y = rect.top + rect.height / 2;
+            
+            // Create massive sparkle explosion
+            createSparkle(x, y, 30);
+            setTimeout(() => createSparkle(x, y, 25), 150);
+            setTimeout(() => createSparkle(x, y, 20), 300);
+            setTimeout(() => createSparkle(x, y, 15), 450);
+            
+            // Create sparkles radiating outward
+            for (let angle = 0; angle < 360; angle += 30) {
+                setTimeout(() => {
+                    const rad = angle * Math.PI / 180;
+                    const distance = 150;
+                    const sparkleX = x + Math.cos(rad) * distance;
+                    const sparkleY = y + Math.sin(rad) * distance;
+                    createSparkle(sparkleX, sparkleY, 5);
+                }, angle * 2);
+            }
+        });
+
+        // Card click sparkle effect - BIG BURST
+        const cards = document.querySelectorAll('.card');
+        cards.forEach(card => {
+            card.addEventListener('click', function(e) {
+                createSparkle(e.pageX, e.pageY, 15);
+                setTimeout(() => createSparkle(e.pageX, e.pageY, 10), 200);
+            });
+        });
+
+        // Title click - SPARKLE RAIN
+        const title = document.querySelector('h1');
+        title.addEventListener('click', function(e) {
+            const rect = this.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            
+            // Create sparkle rain falling from the title
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const x = centerX + (Math.random() - 0.5) * rect.width;
+                    const y = rect.bottom;
+                    createSparkle(x, y, 3);
+                }, i * 100);
+            }
+        });
+
+        // Subtitle and tagline sparkles on hover
+        const subtitle = document.querySelector('.subtitle');
+        const tagline = document.querySelector('.tagline');
+        
+        [subtitle, tagline].forEach(element => {
+            element.style.cursor = 'pointer';
+            element.addEventListener('mouseenter', function(e) {
+                const rect = this.getBoundingClientRect();
+                createSparkle(rect.left + rect.width / 2, rect.top + rect.height / 2, 8);
+            });
+        });
+
+        // Double-click anywhere for sparkle explosion
+        document.addEventListener('dblclick', function(e) {
+            createSparkle(e.pageX, e.pageY, 20);
+        });
+
+        // Sparkles when hovering over list items
+        const listItems = document.querySelectorAll('.card-content li');
+        listItems.forEach(item => {
+            item.addEventListener('mouseenter', function(e) {
+                const rect = this.getBoundingClientRect();
+                createSparkle(rect.left, rect.top + rect.height / 2, 3);
+            });
+        });
+    </script>
+</body>
+</html>
